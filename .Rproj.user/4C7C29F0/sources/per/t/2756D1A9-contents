@@ -1,0 +1,31 @@
+setwd('C:/Users/Infosci_center/Documents/GitHub/soccer/soccer')
+source('preprocessing_utils.R')
+
+path1 <- 'C:/Users/Infosci_center/Documents/GitHub/soccer/soccer/data/PL'
+path2 <- 'C:/Users/Infosci_center/Documents/GitHub/soccer/soccer/data/UEFA'
+path3 <- 'C:/Users/Infosci_center/Documents/GitHub/soccer/soccer/data/BL'
+path4 <- 'C:/Users/Infosci_center/Documents/GitHub/soccer/soccer/data/LIGA'
+path5 <- 'C:/Users/Infosci_center/Documents/GitHub/soccer/soccer/data/SE'
+
+PL <- .load_data(path1,path2,'England')
+BL <- .load_data(path3,path2,'Germany')
+LIGA <- .load_data(path4,path2,'Spain')
+SE <- .load_data(path5,path2,'Italy')
+
+save(PL, file = 'C:/Users/Infosci_center/Documents/GitHub/soccer/soccer/PL.RData')
+write.csv(PL, file = 'C:/Users/Infosci_center/Documents/GitHub/soccer/soccer/PL.csv')
+
+save(BL, file = 'C:/Users/Infosci_center/Documents/GitHub/soccer/soccer/BL.RData')
+write.csv(BL, file = 'C:/Users/Infosci_center/Documents/GitHub/soccer/soccer/BL.csv')
+
+save(LIGA, file = 'C:/Users/Infosci_center/Documents/GitHub/soccer/soccer/LIGA.RData')
+write.csv(LIGA, file = 'C:/Users/Infosci_center/Documents/GitHub/soccer/soccer/LIGA.csv')
+
+save(SE, file = 'C:/Users/Infosci_center/Documents/GitHub/soccer/soccer/SE.RData')
+write.csv(SE, file = 'C:/Users/Infosci_center/Documents/GitHub/soccer/soccer/SE.csv')
+
+df <- read.csv(paste(path2,list.files(path2)[1],sep='/'),skip=1,header =F)
+df %>% select(V1,V2,ncol(df)) 
+.uefa_score('Liverpool',.uefa_score_board(df,'England'))
+
+

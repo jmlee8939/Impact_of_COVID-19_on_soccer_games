@@ -1,0 +1,226 @@
+getwd()
+
+
+PL <- read.csv('PL.csv')
+PL <- PL[,3:ncol(PL)]
+
+LIGA <- read.csv('LIGA.csv')
+LIGA <- LIGA[,3:ncol(LIGA)]
+
+SE <- read.csv('SE.csv')
+SE <- SE[,3:ncol(SE)]
+
+BL <- read.csv('BL.csv')
+BL <- BL[,3:ncol(BL)]
+
+all_data <- rbind(PL,LIGA,SE,BL)
+
+all_data %>% summary
+all_data %>% colnames
+############# 쓸 수 있는 columns 
+# 승 무 패 
+#
+# missing player 적은 쪽
+# home 팀
+# match up 우세 
+# last 5 경기 승점 높은 팀
+# last 5 경기 득점 높은 팀
+# last 5 경기 슈팅 많은 팀
+# last 5 경기 실점 적은 팀
+# last 5 경기 패스 많은 팀
+# last 5 경기 possession 높은 팀
+# UEFA 점수 높은 팀
+# 경기 요일 별 홈 승률 변화
+
+## 1. missing player 적은 쪽
+
+re <- all_data %>% 
+  filter(home_missing_player!=away_missing_player) %>% 
+  mutate(missing_player = home_missing_player - away_missing_player, win = full_home_score - full_away_score) %>% 
+  mutate(result = win*missing_player)
+aa <- re %>% filter(result>0) %>% nrow
+bb <- re %>% filter(result==0) %>% nrow
+cc <- re %>% filter(result<0) %>% nrow
+png(width=500, height=500, filename = '부상자적은팀승률.png')
+barplot(c(cc,bb,aa)/sum(c(aa,bb,cc)), ylim=c(0,0.7), main = paste('부상자 적은팀 승률',round(cc/(aa+bb+cc),3)), names=c('승','무','패'))
+dev.off()
+
+## 2. home team
+
+aa <- re %>% filter(win>0) %>% nrow
+bb <- re %>% filter(win==0) %>% nrow
+cc <- re %>% filter(win<0) %>% nrow
+png(width=500, height=500, filename = '홈팀승률.png')
+barplot(c(aa,bb,cc)/sum(c(aa,bb,cc)), ylim=c(0,0.7),main = paste('홈팀 승률',round(aa/(aa+bb+cc),3)), names=c('승','무','패'))
+dev.off()
+
+## 3. match up 우세
+
+aa <- re %>% mutate(matchup_win = matchup_home_wins - matchup_away_wins) %>%
+  filter(matchup_home_wins!=matchup_away_wins) %>% filter(matchup_win*win>0) %>% nrow()
+bb <- re %>% mutate(matchup_win = matchup_home_wins - matchup_away_wins) %>%
+  filter(matchup_home_wins!=matchup_away_wins) %>% 
+  filter(matchup_win*win==0) %>% nrow()
+cc <- re %>% mutate(matchup_win = matchup_home_wins - matchup_away_wins) %>% 
+  filter(matchup_win*win<0) %>% nrow()
+
+png(width=500, height=500, filename = '맞대결우세팀.png')
+barplot(c(aa,bb,cc)/sum(c(aa,bb,cc)), ylim=c(0,0.7),main = paste('맞대결우세팀(최근5경기) 승률',round(aa/(aa+bb+cc),3)), names=c('승','무','패'))
+dev.off()
+
+
+## 4. last 5 경기 승점 높은팀 승리
+name <- '직전5경기승점높은팀'
+
+zz <- re %>% mutate(temp = home_last_5_points - away_last_5_points) %>%
+  filter(temp!=0)
+aa <- zz %>% filter(temp*win>0) %>% nrow()
+bb <- zz %>% filter(temp*win==0) %>% nrow()
+cc <- zz %>% filter(temp*win<0) %>% nrow()
+
+png(width=500, height=500, filename = paste0(name,'.png'))
+barplot(c(aa,bb,cc)/sum(c(aa,bb,cc)), ylim=c(0,0.7),main = paste(paste0(name,'승률'),round(aa/(aa+bb+cc),3)), names=c('승','무','패'))
+dev.off()
+
+## 5. last 5 경기 득점 높은팀 승리
+name <- '직전5경기득점높은팀'
+
+zz <- re %>% mutate(temp = home_last_5_goals - away_last_5_goals) %>%
+  filter(temp!=0)
+aa <- zz %>% filter(temp*win>0) %>% nrow()
+bb <- zz %>% filter(temp*win==0) %>% nrow()
+cc <- zz %>% filter(temp*win<0) %>% nrow()
+
+png(width=500, height=500, filename = paste0(name,'.png'))
+barplot(c(aa,bb,cc)/sum(c(aa,bb,cc)), ylim=c(0,0.7),main = paste(paste0(name,'승률'),round(aa/(aa+bb+cc),3)), names=c('승','무','패'))
+dev.off()
+
+## 6. last 5 경기 슈팅 많은팀 승리
+name <- '직전5경기슈팅많은팀'
+
+zz <- re %>% mutate(temp = home_last_5_shot - away_last_5_shot) %>%
+  filter(temp!=0)
+aa <- zz %>% filter(temp*win>0) %>% nrow()
+bb <- zz %>% filter(temp*win==0) %>% nrow()
+cc <- zz %>% filter(temp*win<0) %>% nrow()
+
+png(width=500, height=500, filename = paste0(name,'.png'))
+barplot(c(aa,bb,cc)/sum(c(aa,bb,cc)), ylim=c(0,0.7),main = paste(paste0(name,'승률'),round(aa/(aa+bb+cc),3)), names=c('승','무','패'))
+dev.off()
+
+## 7. last 5 경기 실점 적은 팀 승리
+name <- '직전5경기실점적은팀'
+
+zz <- re %>% mutate(temp = - home_last_5_conceded + away_last_5_conceded) %>%
+  filter(temp!=0)
+aa <- zz %>% filter(temp*win>0) %>% nrow()
+bb <- zz %>% filter(temp*win==0) %>% nrow()
+cc <- zz %>% filter(temp*win<0) %>% nrow()
+
+png(width=500, height=500, filename = paste0(name,'.png'))
+barplot(c(aa,bb,cc)/sum(c(aa,bb,cc)), ylim=c(0,0.7),main = paste(paste0(name,'승률'),round(aa/(aa+bb+cc),3)), names=c('승','무','패'))
+dev.off()
+
+## 8. last 5 경기 패스 많은 승리
+name <- '직전5경기패스많은팀'
+
+zz <- re %>% mutate(temp = home_last_5_passes + away_last_5_passes) %>%
+  filter(temp!=0)
+aa <- zz %>% filter(temp*win>0) %>% nrow()
+bb <- zz %>% filter(temp*win==0) %>% nrow()
+cc <- zz %>% filter(temp*win<0) %>% nrow()
+
+png(width=500, height=500, filename = paste0(name,'.png'))
+barplot(c(aa,bb,cc)/sum(c(aa,bb,cc)), ylim=c(0,0.7),main = paste(paste0(name,'승률'),round(aa/(aa+bb+cc),3)), names=c('승','무','패'))
+dev.off()
+
+## 9. UEFA 점수 높은 팀 승률
+name <- 'UEFA 점수 높은팀'
+
+zz <- re %>% mutate(temp = home_uefa + away_uefa) %>%
+  filter(temp!=0)
+aa <- zz %>% filter(temp*win>0) %>% nrow()
+bb <- zz %>% filter(temp*win==0) %>% nrow()
+cc <- zz %>% filter(temp*win<0) %>% nrow()
+
+png(width=500, height=500, filename = paste0(name,'.png'))
+barplot(c(aa,bb,cc)/sum(c(aa,bb,cc)), ylim=c(0,0.7),main = paste(paste0(name,'승률'),round(aa/(aa+bb+cc),3)), names=c('승','무','패'))
+dev.off()
+
+## 경기 요일별 승률변화
+name <- '경기 요일 수'
+
+aa <- zz %>% group_by(day) %>% summarize(n=n())
+png(width=500, height=500, filename = paste0(name,'.png'))
+barplot(pull(aa['n']), ylim=c(0,5000), main = name, names = pull(aa['day']))
+dev.off()
+
+name <- 'Sun'
+
+zzz <- zz %>% filter(day=='Sun')
+aa <- zzz %>% filter(win>0) %>% nrow
+bb <- zzz %>% filter(win==0) %>% nrow
+cc <- zzz %>% filter(win<0) %>% nrow
+
+png(width=500, height=500, filename = paste0(name,'홈팀승률.png'))
+barplot(c(aa,bb,cc)/sum(c(aa,bb,cc)), ylim=c(0,0.7),main = paste(paste(name,'홈팀 승률'),round(aa/(aa+bb+cc),3)), names=c('승','무','패'))
+dev.off()
+
+
+### 경기 결과 종합합
+
+aa <- zz %>% mutate(temp = paste(full_home_score,full_away_score,sep=':')) %>% select(temp) %>% type.convert() %>% 
+  group_by(temp) %>% summarize(n=n()) %>% arrange(desc(n)) %>% slice(.,(1:10))
+
+
+png(width=500, height=500, filename = '경기결과.png')
+barplot(pull(aa['n']), main = '경기결과', names=pull(aa['temp']), ylim = c(0,1500))
+dev.off()
+
+
+#### home & away 에 따라 달라지는 경기 내의 stat
+
+all_data %>% colnames
+
+
+png(width=500, height=500, filename = 'shot.png')
+boxplot(all_data %>% select(home_shot,away_shot), main = 'Shot')
+dev.off()
+
+png(width=500, height=500, filename = 'possession.png')
+boxplot(all_data %>% select(home_possession,away_possession), main = 'possession')
+dev.off()
+
+png(width=500, height=500, filename = 'tackle.png')
+boxplot(all_data %>% select(home_tackles,away_tackles), main = 'tackles')
+dev.off()
+
+png(width=500, height=500, filename = 'corners.png')
+boxplot(all_data %>% select(home_corners,away_corners), main = 'corners')
+dev.off()
+
+png(width=500, height=500, filename = 'dispossessed.png')
+boxplot(all_data %>% select(home_dispossessed,away_dispossessed), main = 'dispossessed')
+dev.off()
+
+png(width=500, height=500, filename = 'attack numbers.png')
+boxplot(all_data %>% select(home_total_att,away_total_att), main = 'attack numbers')
+dev.off()
+
+png(width=500, height=500, filename = 'passess.png')
+boxplot(all_data %>% select(home_total_passes,away_total_passes), main = 'passes')
+dev.off()
+
+png(width=500, height=500, filename = 'scores.png')
+boxplot(all_data %>% select(full_home_score,full_away_score), main = 'score')
+dev.off()
+
+all_data %>% filter(home_uefa>120 & away_uefa<20)
+
+
+
+
+all_data
+
+
+

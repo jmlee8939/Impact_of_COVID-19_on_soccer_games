@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1616141843212.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2611019833",
+    "id" : "2756D1A9",
+    "lastKnownWriteTime" : 1616402889,
+    "last_content_update" : 1616402889719,
+    "path" : "~/GitHub/soccer/soccer/preprocessed.R",
+    "project_path" : "preprocessed.R",
+    "properties" : {
+        "cursorPosition" : "26,74",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

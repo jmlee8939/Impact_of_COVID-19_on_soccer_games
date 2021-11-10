@@ -1,0 +1,30 @@
+,HomeGoals,AwayGoals,HomeTeam,AwayTeam,MatchResult,mean_home_goal,mean_away_goal,Estimated1,Estimated2
+1,0,2,Leicester,Manchester City,-1,0.851111111,1.825896296,-1,-1
+2,2,5,Chelsea,West Bromwich Albion,-1,2.276474074,0.682192593,1,1
+3,0,3,Arsenal,Liverpool,-1,1.11437037,1.385244444,-1,-1
+4,2,1,Leeds,Sheffield United,1,1.548651852,1.004088889,1,1
+5,2,2,Newcastle United,Tottenham,0,0.849748148,1.81597037,-1,-1
+6,3,2,Southampton,Burnley,1,1.343762963,1.161866667,1,0
+7,3,1,Aston Villa,Fulham,1,1.524355556,1.012859259,1,1
+8,2,1,Manchester United,Brighton,1,2.003674074,0.778874074,1,1
+9,1,1,Everton,Crystal Palace,0,1.55442963,1.009185185,1,1
+10,2,3,Wolverhampton Wanderers,West Ham,-1,1.277185185,1.216888889,1,0
+11,0,1,Fulham,Wolverhampton Wanderers,-1,1.020385185,1.539259259,-1,-1
+12,2,1,Liverpool,Aston Villa,1,1.955496296,0.802933333,1,1
+13,1,4,Crystal Palace,Chelsea,-1,0.899348148,1.763377778,-1,-1
+14,1,2,Manchester City,Leeds,-1,2.426222222,0.63602963,1,1
+15,0,3,Sheffield United,Arsenal,-1,0.921807407,1.695377778,-1,-1
+16,1,2,Burnley,Newcastle United,-1,1.373866667,1.128414815,1,1
+17,1,3,Tottenham,Manchester United,-1,1.248414815,1.246844444,1,0
+18,3,2,West Ham,Leicester,1,1.122785185,1.384296296,-1,-1
+,,,,,,,,,
+,,,,,,,,,
+,Home 0 ,Home 1,Home 2,Home 3,Home 4,Home 5,Home 6,Home 7,
+Away 0,2242,1881,826,264,52,9,1,0,
+Away 1,4206,3465,1487,446,97,14,8,0,
+Away 2,3726,3030,1355,384,91,18,1,0,
+Away 3,2376,1876,788,229,49,8,1,0,
+Away 4,1128,871,354,117,23,2,0,0,
+Away 5,416,345,135,43,12,2,0,0,
+Away 6,111,116,33,13,2,2,0,0,
+Away 7,34,30,6,5,0,0,0,0,

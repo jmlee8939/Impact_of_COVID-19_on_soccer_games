@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1616396535721.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "915835829",
+    "id" : "9F3FB9D1",
+    "lastKnownWriteTime" : 1616402892,
+    "last_content_update" : 1616402892187,
+    "path" : "~/GitHub/soccer/soccer/note.R",
+    "project_path" : "note.R",
+    "properties" : {
+        "cursorPosition" : "244,19",
+        "scrollLine" : "337"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

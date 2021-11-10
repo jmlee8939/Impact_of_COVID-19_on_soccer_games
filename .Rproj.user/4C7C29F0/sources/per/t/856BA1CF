@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1616036692382.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "69|28|72|0|\n75|38|100|0|\n103|34|112|0|\n115|37|128|0|\n219|49|233|0|\n234|53|246|0|\n247|48|260|0|\n261|51|274|0|\n275|54|288|0|\n289|47|302|0|\n",
+    "hash" : "2272705864",
+    "id" : "856BA1CF",
+    "lastKnownWriteTime" : 1616400823,
+    "last_content_update" : 1616400823927,
+    "path" : "~/GitHub/soccer/soccer/preprocessing_utils.R",
+    "project_path" : "preprocessing_utils.R",
+    "properties" : {
+        "cursorPosition" : "170,13",
+        "scrollLine" : "160",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,512 @@
+###### baseline model
+###### 6round 부터
+###### uefa ranking 5경기 누적스텟, 부상자명수, 그 round 까지의 경기당 stat,
+###### 코로나 전 후로 data set을 나눠서
+###### 코로나 전으로 전 예측, 후 후 예측, 같이해서 후 예측 //
+###### << ***** coral 해서 후 예측,
+###### + model 추가
+dim(df)
+##### initial data analysis
+a <- df %>% select(colnames(df)[33:length(df)]) %>% type.convert()
+df %>% mutate(=)
+df %>% summary
+##### PL
+dir.create(file.path(getwd(),'plot'))
+setwd(file.path(getwd(),'plot'))
+######### possession
+boxplot(df$home_possession, df$away_possession, names = c('home', 'away'), ylab = c('possession'))
+png('PL_h&a_possession.png')
+png('PL_h&a_possession.jpg')
+png(width=200, height=200, filename = 'PL_h&a_possession.jpg')
+png(width=200, height=200, filename = 'PL_h_a_possession.jpg')
+######### possession
+boxplot(df$home_possession, df$away_possession, names = c('home', 'away'), ylab = c('possession'))
+png(width=200, height=200, filename = 'PL_h_a_possession.jpg')
+library('tidyverse')
+setwd("C:/Users/Infosci_center/Desktop/soccer/data/PL")
+path = "C:/Users/Infosci_center/Desktop/soccer/data/PL"
+lis <- list.files(path=path, pattern = 'csv')
+for (i in 1:9){
+if (i==1){
+df <- read.csv(lis[i])
+df <- df %>% select(-c('home_shot','away_shot'))
+}
+else if  (i==8){
+temp <- read.csv(lis[i])
+df <- rbind(df,temp)
+}
+else {
+temp <- read.csv(lis[i])
+temp <- temp %>% select(-c('home_shot','away_shot'))
+df <- rbind(df,temp)
+}
+}
+dim(df)
+df <-read.csv(lis[1])
+df <- as_tibble(df[,-1])
+df %>% colnames()
+### in game feature (home, away 먼저 비교,승리팀 패배팀 나중비교)
+# shot, possesssion, pass_success, miss_player_rating, miss player, matchup_goals,
+# season 별 홈승률 변화 plot
+# baseline
+# 홈 승률 분포
+# 시즌당
+for (i in 1:9){
+df <- read.csv(lis[i])
+result <- df %>% mutate(k = full_home_score-full_away_score)
+win <- result %>% filter(k>0) %>% nrow()
+print(win)
+}
+###### baseline model
+###### 6round 부터
+###### uefa ranking 5경기 누적스텟, 부상자명수, 그 round 까지의 경기당 stat,
+###### 코로나 전 후로 data set을 나눠서
+###### 코로나 전으로 전 예측, 후 후 예측, 같이해서 후 예측 //
+###### << ***** coral 해서 후 예측,
+###### + model 추가
+dim(df)
+##### initial data analysis
+a <- df %>% select(colnames(df)[33:length(df)]) %>% type.convert()
+df %>% mutate(=)
+df %>% summary
+##### PL
+dir.create(file.path(getwd(),'plot'))
+setwd(file.path(getwd(),'plot'))
+######### possession
+boxplot(df$home_possession, df$away_possession, names = c('home', 'away'), ylab = c('possession'))
+png(width=200, height=200, filename = 'PL_h_a_possession.png')
+dev.off()
+######### possession
+boxplot(df$home_possession, df$away_possession, names = c('home', 'away'), ylab = c('possession'))
+png(width=500, height=500, filename = 'PL_home_possession.png')
+dev.off()
+######### possession
+boxplot(df$home_possession, df$away_possession, names = c('home', 'away'), ylab = c('possession'))
+png(width=500, height=500, filename = 'PL_home_possession.png')
+dev.off()
+######### possession
+boxplot(df$home_possession, df$away_possession, names = c('home', 'away'), ylab = c('possession'))
+png(width=300, height=300, filename = 'PL_home_possession.png')
+dev.off()
+boxplot(df$home_possession, df$away_possession, names = c('home', 'away'), ylab = c('possession'))
+png(width=300, height=300, filename = 'PL_home_possession.png')
+dev.off()
+boxplot(df$home_pass_success, df$away_pass_success, names = c('home', 'away'), ylab = c('pass'))
+dev.off()
+boxplot(df$home_pass_success, df$away_pass_success, names = c('home', 'away'), ylab = c('pass'))
+boxplot(df$home_pass_success, df$away_pass_success, names = c('home', 'away'), ylab = c('pass'))
+png(width=300, height=300, filename = 'PL_home_pass.png')
+dev.off()
+boxplot(df$home_possession, df$away_possession, names = c('home', 'away'), ylab = c('possession'))
+png(width=200, height=200, filename = 'PL_home_possession.png')
+dev.off()
+boxplot(df$home_pass_success, df$away_pass_success, names = c('home', 'away'), ylab = c('pass'))
+png(width=200, height=200, filename = 'PL_home_pass.png')
+dev.off()
+dir.create(file.path(getwd(),'plot'))
+setwd(file.path(getwd(),'plot'))
+######### possession
+boxplot(df$home_possession, df$away_possession, names = c('home', 'away'), ylab = c('possession'))
+png(width=200, height=200, filename = 'PL_home_possession.png')
+dev.off()
+boxplot(df$home_pass_success, df$away_pass_success, names = c('home', 'away'), ylab = c('pass'))
+png(width=200, height=200, filename = 'PL_home_pass.png')
+dev.off()
+##### PL
+dir.create(file.path(getwd(),'plot'))
+setwd(file.path(getwd(),'plot'))
+######### possession
+boxplot(df$home_possession, df$away_possession, names = c('home', 'away'), ylab = c('possession'))
+png(width=200, height=200, filename = 'PL_home_possession.png')
+dev.off()
+boxplot(df$home_pass_success, df$away_pass_success, names = c('home', 'away'), ylab = c('pass'))
+png(width=200, height=200, filename = 'PL_home_pass.png')
+dev.off()
+setwd(file.path(getwd(),'plot'))
+##### PL
+dir.create(file.path(getwd(),'plot'))
+setwd(file.path(getwd(),'plot'))
+######### possession
+boxplot(df$home_possession, df$away_possession, names = c('home', 'away'), ylab = c('possession'))
+png(width=200, height=200, filename = 'PL_home_possession.png')
+dev.off()
+getwd()
+dev.off()
+getwd()
+##### PL
+dir.create(file.path(getwd(),'plot'))
+setwd(file.path(getwd(),'plot'))
+library('tidyverse')
+setwd("C:/Users/Infosci_center/Desktop/soccer/data/PL")
+path = "C:/Users/Infosci_center/Desktop/soccer/data/PL"
+lis <- list.files(path=path, pattern = 'csv')
+for (i in 1:9){
+if (i==1){
+df <- read.csv(lis[i])
+df <- df %>% select(-c('home_shot','away_shot'))
+}
+else if  (i==8){
+temp <- read.csv(lis[i])
+df <- rbind(df,temp)
+}
+else {
+temp <- read.csv(lis[i])
+temp <- temp %>% select(-c('home_shot','away_shot'))
+df <- rbind(df,temp)
+}
+}
+dim(df)
+getwd()
+dir.create(file.path(getwd(),'plot'))
+setwd(file.path(getwd(),'plot'))
+######### possession
+boxplot(df$home_possession, df$away_possession, names = c('home', 'away'), ylab = c('possession'))
+getwd()
+######### possession
+boxplot(df$home_possession, df$away_possession, names = c('home', 'away'), ylab = c('possession'))
+png(width=200, height=200, filename = 'PL_home_possession.png')
+dev.off()
+boxplot(df$home_pass_success, df$away_pass_success, names = c('home', 'away'), ylab = c('pass'))
+png(width=200, height=200, filename = 'PL_home_pass.png')
+dev.off()
+getwd()
+library('tidyverse')
+setwd("C:/Users/Infosci_center/Desktop/soccer/data/PL")
+path = "C:/Users/Infosci_center/Desktop/soccer/data/PL"
+lis <- list.files(path=path, pattern = 'csv')
+for (i in 1:9){
+if (i==1){
+df <- read.csv(lis[i])
+df <- df %>% select(-c('home_shot','away_shot'))
+}
+else if  (i==8){
+temp <- read.csv(lis[i])
+df <- rbind(df,temp)
+}
+else {
+temp <- read.csv(lis[i])
+temp <- temp %>% select(-c('home_shot','away_shot'))
+df <- rbind(df,temp)
+}
+}
+dim(df)
+a <- df %>% select(colnames(df)[33:length(df)]) %>% type.convert()
+######### possession
+boxplot(df$home_possession, df$away_possession, names = c('home', 'away'), ylab = c('possession'))
+png(width=200, height=200, filename = 'PL_home_possession.png')
+dev.off()
+getwd()
+######### possession
+boxplot(df$home_possession, df$away_possession, names = c('home', 'away'), ylab = c('possession'))
+png(width=200, height=200, filename = 'PL_home_possession.jpg')
+dev.off()
+######### possession
+boxplot(df$home_possession, df$away_possession, names = c('home', 'away'), ylab = c('possession'))
+png(width=1000, height=1000, filename = 'PL_home_possession.jpg')
+dev.off()
+######### possession
+boxplot(df$home_possession, df$away_possession, names = c('home', 'away'), ylab = c('possession'))
+png(width=1000, height=1000, file = 'PL_home_possession.png')
+dev.off()
+getwd()
+##### PL
+dir.create(file.path(getwd(),'plot'))
+setwd(file.path(getwd(),'plot'))
+getwd()
+######### possession
+png(width=500, height=500, file = 'PL_home_possession.png')
+boxplot(df$home_possession, df$away_possession, names = c('home', 'away'), ylab = c('possession'))
+dev.off()
+png(width=200, height=200, filename = 'PL_home_pass.png')
+boxplot(df$home_pass_success, df$away_pass_success, names = c('home', 'away'), ylab = c('pass'))
+dev.off()
+df %>% colnames()
+############# total pass
+boxplot(a$home_total_passes, a$away_total_passes)
+a <- df %>% select(colnames(df)[33:length(df)]) %>% type.convert()
+a
+a %>% summary
+a <- df %>% select(colnames(df)[33:length(df)]) %>% type.convert(numeric)
+a <- df %>% select(colnames(df)[33:length(df)]) %>% type.convert(numerals)
+a <- df %>% select(colnames(df)[33:length(df)]) %>% sapply(as.numeric)
+a <- df %>% select(colnames(df)[33:length(df)]) %>% sapply(as.numeric)
+a
+a %>% summary
+############# total pass
+boxplot(a$home_total_passes, a$away_total_passes)
+a
+a$home_total_att
+a <- df %>% select(colnames(df)[33:length(df)]) %>% mutate_all(type.convert) %>%
+mutate_if(is.factor, as.character)
+a %>% summary
+a <- df %>% select(colnames(df)[33:length(df)]) %>% mutate_all(type.convert) %>% mutate_if(is.factor, as.character)
+a %>% summary
+a <- df %>% select(colnames(df)[33:length(df)]) %>% mutate_all(type.convert) %>% mutate_if(is.factor, as.character)
+a %>% summary
+df[df=='null']<- NA
+a <- df %>% select(colnames(df)[33:length(df)]) %>% mutate_all(type.convert) %>% mutate_if(is.factor, as.character)
+a %>% summary
+############# total pass
+boxplot(a$home_total_passes, a$away_total_passes)
+df %>% summary
+########### pass
+png(width=200, height=200, filename = 'PL_home_pass_success.png')
+boxplot(df$home_pass_success, df$away_pass_success, names = c('home', 'away'), ylab = c('pass_'))
+dev.off()
+########### pass
+png(width=200, height=200, filename = 'PL_home_pass_success.png')
+boxplot(df$home_pass_success, df$away_pass_success, names = c('home', 'away'), ylab = c('pass_success'))
+dev.off()
+############# total pass
+png(width=200, height=200, filename = 'PL_home_total_pass.png')
+boxplot(df$home_pass_success, df$away_pass_success, names = c('home', 'away'), ylab = c('total_pass'))
+dev.off()
+df %>% summary
+############# total pass
+png(width=200, height=200, filename = 'PL_home_total_pass.png')
+boxplot(a$home_total_passes, a$home_total_passes, names = c('home', 'away'), ylab = c('total_pass'))
+dev.off()
+############# total pass
+png(width=200, height=200, filename = 'PL_home_total_pass.png')
+boxplot(a$home_total_passes, a$home_total_passes, names = c('home', 'away'), ylab = c('total_pass'))
+dev.off()
+######### possession
+png(width=500, height=500, file = 'PL_home_possession.png')
+boxplot(df$home_possession, df$away_possession, names = c('home', 'away'), ylab = c('possession'))
+dev.off()
+########### pass
+png(width=500, height=500, filename = 'PL_home_pass_success.png')
+boxplot(df$home_pass_success, df$away_pass_success, names = c('home', 'away'), ylab = c('pass_success'))
+dev.off()
+############# total pass
+png(width=500, height=500, filename = 'PL_home_total_pass.png')
+boxplot(a$home_total_passes, a$home_total_passes, names = c('home', 'away'), ylab = c('total_pass'))
+dev.off()
+############## score
+png(width=500, height=500, filename = 'PL_home_score.png')
+boxplot(df$home_pass_success, df$away_pass_success, names = c('home', 'away'), ylab = c('score'))
+dev.off()
+############## score
+png(width=500, height=500, filename = 'PL_home_score.png')
+boxplot(df$full_home_score, df$full_away_score, names = c('home', 'away'), ylab = c('score'))
+dev.off()
+boxplot(df$home_counter_att, df$away_counter_att, names = c('home', 'away'), ylab = c('score'))
+boxplot(df$home_counter_att, df$away_counter_att, names = c('home', 'away'), ylab = c('score'))
+boxplot(a$home_counter_att, a$away_counter_att, names = c('home', 'away'), ylab = c('score'))
+dev.off()
+######### possession
+png(width=500, height=500, file = 'PL_home_possession.png')
+boxplot(df$home_possession, df$away_possession, names = c('home', 'away'), ylab = c('possession'))
+dev.off()
+########### pass
+png(width=500, height=500, filename = 'PL_home_pass_success.png')
+boxplot(df$home_pass_success, df$away_pass_success, names = c('home', 'away'), ylab = c('pass_success'))
+dev.off()
+############# total pass
+png(width=500, height=500, filename = 'PL_home_total_pass.png')
+boxplot(a$home_total_passes, a$home_total_passes, names = c('home', 'away'), ylab = c('total_pass'))
+dev.off()
+############## score
+png(width=500, height=500, filename = 'PL_home_score.png')
+boxplot(df$full_home_score, df$full_away_score, names = c('home', 'away'), ylab = c('score'))
+dev.off()
+########## counter
+png(width=500, height=500, filename = 'PL_counter.png')
+boxplot(a$home_counter_att, a$away_counter_att, names = c('home', 'away'), ylab = c('score'))
+dev.off()
+######### count victory
+results <- df %>% mutate(result = full_home_score-full_away_score) %>% select(result)
+victory = results %>% select(result>0) %>% nrow() /380
+victory = results %>% filter(result>0) %>% nrow()
+victory/380
+victory/380/9
+victory <- results %>% filter(result>0) %>% nrow()
+draw <- results %>% filter(result==0) %>%  nrow()
+lose <- results %>% filter(result<0) %>%  nrow()
+draw
+lose
+victory
+hist(victory,draw,lose)
+plot(victory,draw,lose)
+plot(c(victory,draw,lose))
+barplot(c(victory,draw,lose))
+barplot(c(victory,draw,lose), xlab = c('victory', 'draw', 'lose'))
+barplot(c(victory,draw,lose), names = c('victory', 'draw', 'lose'))
+png(width=500, height=500, filename = 'PL_home_win.png')
+barplot(c(victory,draw,lose), names = c('victory', 'draw', 'lose'))
+dev.off()
+df[33:length(df)]  <- df %>% select(colnames(df)[33:length(df)]) %>% mutate_all(type.convert) %>% mutate_if(is.factor, as.character)
+########## counter att
+png(width=500, height=500, filename = 'PL_counter.png')
+boxplot(df$home_counter_att, df$away_counter_att, names = c('home', 'away'), ylab = c('counter_att'))
+dev.off()
+########## pk
+png(width=500, height=500, filename = 'PL_home_pk.png')
+boxplot(df$home_pk_att, df$away_pk_att, names = c('home', 'away'), ylab = c('pk'))
+dev.off()
+df %>% select(contains('pk'))
+df %>% select(contains('pk')) %>% mean()
+df %>% select(contains('pk')) %>% lapply(mean)
+df %>% select(contains('pk')) %>% lapply(mean())
+df %>% select(contains('pk')) %>% summary()
+lis[i]
+for (i in 1:9){
+temp_df <- read.csv(paste0("C:/Users/Infosci_center/Desktop/soccer/data/PL",lis[i]))
+results <- temp_df %>% mutate(result = full_home_score-full_away_score) %>% select(result)
+victory <- results %>% filter(result>0) %>% nrow()
+print(victory)
+}
+for (i in 1:9){
+temp_df <- read.csv(paste0("C:/Users/Infosci_center/Desktop/soccer/data/PL/",lis[i]))
+results <- temp_df %>% mutate(result = full_home_score-full_away_score) %>% select(result)
+victory <- results %>% filter(result>0) %>% nrow()
+print(victory)
+}
+df %>% summary
+victory
+draw
+lose
+######### count victory
+results <- df %>% mutate(result = full_home_score-full_away_score) %>% select(result)
+victory <- results %>% filter(result>0) %>% nrow()
+victory
+draw
+lose
+victory+
+draw+
+lose
+1558/3420*100
+df %>% mutate(a = home_possession - away_possession) %>% mutate(b = full_home_score, a = full_away_score) %>% filter(a>0 && b>0)
+df %>% mutate(a = home_possession - away_possession) %>% mutate(b = full_home_score, a = full_away_score) %>% filter(a>0)
+df %>% mutate(a = home_possession - away_possession) %>% mutate(b = full_home_score - full_away_score) %>% mutate(c= a*b) %>% select(c)
+df %>% mutate(a = home_possession - away_possession) %>% mutate(b = full_home_score - full_away_score) %>% mutate(c= a*b) %>% filter(c>0) %>% nrow
+dim(df)
+draw
+3420-draw
+df %>% mutate(a = home_possession - away_possession) %>% mutate(b = full_home_score - full_away_score) %>% mutate(c= a*b) %>% filter(c==0) %>% nrow
+df %>% mutate(a = home_possession - away_possession) %>% mutate(b = full_home_score - full_away_score) %>% mutate(c= a*b) %>% filter(a==0) %>% nrow
+df %>% mutate(a = home_possession - away_possession) %>% mutate(b = full_home_score - full_away_score) %>% mutate(c= a*b) %>% filter(a<0) %>% nrow
+df %>% mutate(a = home_possession - away_possession) %>% mutate(b = full_home_score - full_away_score) %>% mutate(c= a*b) %>% filter(c<0) %>% nrow
+832 +1119+1469
+barplot(c(1469,832,1119), names(victory,draw,lose))
+barplot(c(1469,832,1119), names(c(victory,draw,lose)))
+barplot(c(1469,832,1119), names(c('victory','draw','lose')))
+barplot(c(1469,832,1119), names(c('victory','draw','lose')))
+barplot(c(1469,832,1119), names = c('victory','draw','lose'))
+win_pos <- pos %>%  filter(c>0) %>% nrow
+draw_pos <- pos %>%  filter(c==0) %>% nrow
+############ possession winner
+pos <- df %>% mutate(a = home_possession - away_possession) %>% mutate(b = full_home_score - full_away_score) %>% mutate(c= a*b) %>% filter(c<0) %>% nrow
+win_pos <- pos %>%  filter(c>0) %>% nrow
+draw_pos <- pos %>%  filter(c==0) %>% nrow
+############ possession winner
+pos <- df %>% mutate(a = home_possession - away_possession) %>% mutate(b = full_home_score - full_away_score) %>% mutate(c= a*b)
+win_pos <- pos %>%filter(c>0) %>% nrow
+draw_pos <- pos %>% filter(c==0) %>% nrow
+lose_pos <- pos %>% filter(c<0) %>% nrow
+lose_po
+lose_pos
+png(width=500, height=500, filename = 'PL_possession_win.png')
+barplot(c(win_pos,draw_pos,lose_pos), names = c('victory','draw','lose'))
+dev.off()
+win_pos/nrow(df)
+win_pos
+draw_pos
+lose_pos
+is.na(df)
+df[is.na(df)]
+is.na(df)
+sum(is.na(df))
+df %>% is.na
+source('C:/Users/Infosci_center/Desktop/soccer/data/PL/note.R', encoding = 'UTF-8', echo=TRUE)
+df %>% is.na %>% colSums
+for (i in 1:9){
+if (i==1){
+df <- read.csv(lis[i])
+df <- df %>% select(-c('home_shot','away_shot'))
+}
+else if  (i==8){
+temp <- read.csv(lis[i])
+df <- rbind(df,temp)
+}
+else {
+temp <- read.csv(lis[i])
+temp <- temp %>% select(-c('home_shot','away_shot'))
+df <- rbind(df,temp)
+}
+}
+dim(df)
+setwd("C:/Users/Infosci_center/Desktop/soccer/data/PL")
+path = "C:/Users/Infosci_center/Desktop/soccer/data/PL"
+lis <- list.files(path=path, pattern = 'csv')
+for (i in 1:9){
+if (i==1){
+df <- read.csv(lis[i])
+df <- df %>% select(-c('home_shot','away_shot'))
+}
+else if  (i==8){
+temp <- read.csv(lis[i])
+df <- rbind(df,temp)
+}
+else {
+temp <- read.csv(lis[i])
+temp <- temp %>% select(-c('home_shot','away_shot'))
+df <- rbind(df,temp)
+}
+}
+dim(df)
+df %>% is.na %>% colSums
+round(22.2)
+df %>% sapply(function(x) ifesle(is.na(x), round(mean(x, na.rm=TRUE)), x))
+df %>% sapply(function(x) ifelse(is.na(x), round(mean(x, na.rm=TRUE)), x))
+df %>% sapply(function(x) ifelse(is.na(x), round(mean(x, na.rm=TRUE)), x)) %>% summary
+df[df=='null']<-NA
+df %>% sapply(function(x) ifelse(is.na(x), round(mean(x, na.rm=TRUE)), x)) %>%
+df %>% sapply(function(x) ifelse(is.na(x), round(mean(x, na.rm=TRUE)), x)) %>% summary
+df %>% sapply(function(x) ifelse(is.na(x), round(mean(x, na.rm=TRUE)), x))
+df %>% sapply(function(x) ifelse(is.na(x), round(mean(x, na.rm=TRUE)), x)) %>% summary
+df %>% is.na %>% colSums
+df[df=='null']
+df %>% sapply(function(x) ifelse(is.na(x), round(mean(x, na.rm=TRUE)), x)) %>% summary()
+df %>% sapply(function(x) ifelse(is.na(x), round(mean(x, na.rm=TRUE)), x)) %>% mutate_all(type.convert) %>% mutate_if(is.factor, as.character)
+df %>% sapply(function(x) ifelse(is.na(x), round(mean(x, na.rm=TRUE)), x)) %>% mutate_all(type.convert)
+df %>% sapply(function(x) ifelse(is.na(x), round(mean(x, na.rm=TRUE)), x)) %>% type.convert()
+df %>% sapply(function(x) ifelse(is.na(x), round(mean(x, na.rm=TRUE)), x)) %>% type.convert() %>% summary
+df %>% sapply(function(x) ifelse(is.na(x), mean(x, na.rm=TRUE), x)) %>% type.convert() %>% summary
+df %>% is.na %>% colSums
+df[df=='null']<-NA
+df %>% sapply(function(x) ifelse(is.na(x), mean(x, na.rm=TRUE), x)) %>% type.convert() %>% summary
+df %>% is.na %>% colSums
+df %>% sapply(function(x) ifelse(is.na(x), mean(x, na.rm=TRUE), x)) %>% type.convert() %>% summary
+df %>% sapply(function(x) ifelse(is.na(x), mean(x, na.rm=TRUE), x))
+df %>% sapply(function(x) ifelse(is.na(x), mean(x, na.rm=TRUE), x)) %>% is.na %>% colSums
+df %>% select(contains('matchup'))
+df %>% select(contains('crosses'))
+df %>% select(contains('crosses')) %>% is.na
+df %>% select(contains('crosses')) %>% mean(na.rm=TRUE)
+df %>% select(contains('crosses')) %>% mean(na.rm=TRUE))
+df %>% select(contains('crosses')) %>% mean(na.rm=TRUE)
+sapply(df, function(x) ifelse(is.na(x), mean(x, na.rm=TRUE), x))
+sapply(df, function(x) ifelse(is.na(x), mean(x, na.rm=TRUE), x)) %>% is.na %>% colSums
+df$home_total_att
+sapply(df, function(x) ifelse(is.na(x), mean(x, na.rm=TRUE), x)) %>% is.na %>% colSums %>% type.convert
+sapply(df, function(x) ifelse(is.na(x), mean(x, na.rm=TRUE), x)) %>% is.na %>% colSums %>% type.convert
+sapply(df, function(x) ifelse(is.na(x), mean(x, na.rm=TRUE), x)) %>% is.na %>% colSums
+df %>% sapply(function(x) ifelse(is.na(x), mean(x, na.rm=TRUE), x)) %>% is.na %>% colSums
+df %>% select(contains('crosses')) %>% mean(na.rm=TRUE)
+df
+df$home_total_att %>% mean(na.rm=T)
+df$home_total_att %>% mean(df$home_total_att)
+mean(df$home_total_att)
+mean(df$home_total_att, na.rm=TRUE)
+mean(df$home_total_att, na.rm=TRUE)
+df$home_total_att
+df
+mean(df$home_total_att, na.rm=TRUE)
+df$home_total_att
+df[33:length(df)]  <- df %>% select(colnames(df)[33:length(df)]) %>% mutate_all(type.convert) %>% mutate_if(is.factor, as.numeric)
+df$home_total_att
+df %>% sapply(function(x) ifelse(is.na(x), mean(x, na.rm=TRUE), x)) %>% is.na %>% colSums
+df$matchup_away_wins
+df %>% sapply(function(x) ifelse(is.na(x), mean(x, na.rm=TRUE), x)) %>% is.na %>% colSums
+df$matchup_away_wins

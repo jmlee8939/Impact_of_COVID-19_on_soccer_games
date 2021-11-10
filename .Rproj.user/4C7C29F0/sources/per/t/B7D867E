@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1616402970647.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3275859356",
+    "id" : "B7D867E",
+    "lastKnownWriteTime" : 1616417180,
+    "last_content_update" : 1616417180813,
+    "path" : "~/GitHub/soccer/soccer/plot 그리기.R",
+    "project_path" : "plot 그리기.R",
+    "properties" : {
+        "cursorPosition" : "106,58",
+        "scrollLine" : "109",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

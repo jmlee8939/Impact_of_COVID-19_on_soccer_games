@@ -1,0 +1,9 @@
+{
+    "path" : "~/GitHub/soccer/soccer/data",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}
